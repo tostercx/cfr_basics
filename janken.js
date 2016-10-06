@@ -1,9 +1,11 @@
-var ROCK = 0, PAPER = 1, SCISSORS = 2, NUM_ACTIONS = 3;
+var initArray = size => Array.apply(null, Array(size)).map(x => 0.0)
 
-var regretSum = Array.apply(null, Array(NUM_ACTIONS)).map(x => 0.0), 
-         strategy = Array.apply(null, Array(NUM_ACTIONS)).map(x => 0.0), 
-         strategySum = Array.apply(null, Array(NUM_ACTIONS)).map(x => 0.0), 
+var ROCK = 0, PAPER = 1, SCISSORS = 2, NUM_ACTIONS = 3;
+var regretSum = initArray(NUM_ACTIONS), 
+         strategy = initArray(NUM_ACTIONS), 
+         strategySum = initArray(NUM_ACTIONS), 
          oppStrategy = [ 0.4, 0.3, 0.3 ]; 
+
 
 function getStrategy() {
     var normalizingSum = 0;
@@ -20,7 +22,6 @@ function getStrategy() {
     }
     return strategy;
 }
-    
 
 function getAction(strategy) {
     var r = Math.random();
@@ -36,7 +37,7 @@ function getAction(strategy) {
 }
 
 function train(iterations) {
-    var actionUtility = Array.apply(null, Array(NUM_ACTIONS)).map(x => 0.0);
+    var actionUtility = initArray(NUM_ACTIONS);
     for (var i = 0; i < iterations; i++) {
         var strategy = getStrategy();
         var myAction = getAction(strategy);
@@ -52,7 +53,7 @@ function train(iterations) {
 }
 
 function getAverageStrategy() {
-    var avgStrategy = Array.apply(null, Array(NUM_ACTIONS)).map(x => 0.0);
+    var avgStrategy = initArray(NUM_ACTIONS);
     var normalizingSum = 0;
     for (var a = 0; a < NUM_ACTIONS; a++)
         normalizingSum += strategySum[a];
