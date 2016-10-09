@@ -30,7 +30,7 @@ function getStrategy() {
         normalizingSum[b] += strategy[b][a];
     }
     for (var b = 0; b < NUM_PROB_RESOLUTION; b++)
-    for (var a = 0; a < NUM_ACTIONS; a++) {//console.log(normalizingSum[b]);
+    for (var a = 0; a < NUM_ACTIONS; a++) {
         if (normalizingSum[b] > 0)
           strategy[b][a] /= normalizingSum[b];
         else
@@ -44,7 +44,7 @@ function getAction(strategy, prob) {
     var r = Math.random();
     var a = 0;
     var cumulativeProbability =  0;
-    while (a < NUM_ACTIONS - 1) {//console.log(prob);
+    while (a < NUM_ACTIONS - 1) {
         cumulativeProbability += strategy[prob][a];
         if (r < cumulativeProbability)
             break;
@@ -67,7 +67,7 @@ function deal(used, num) {
 
 function train(iterations) {
     for (var i = 0; i < iterations; i++) {
-        var strategy = getStrategy();//console.dir(strategy);if(i > 1) process.exit();
+        var strategy = getStrategy();
         var used = Array.apply(null, Array(52)).map(x => 0);
         
         var h1 = deal(used, 2).join('_');
@@ -76,13 +76,12 @@ function train(iterations) {
         // calculate winning odds
         var sim_opponents = 1;
         var c = deal(used, 5).join('_');
-        //var c = ''; //game.community.map(cc).join('_');
         
         nl.send('C'+c+' H'+h1+' O'+sim_opponents+' I100\n');
         var p1 = Math.floor(parseFloat(nl.read(1024)) * 10);
         if(p1 == 10) p1--;
         
-        var myAction = getAction(strategy, p1);//console.log(myAction);
+        var myAction = getAction(strategy, p1);
         
         nl.send('C'+c+' H'+h1+' T'+h2+'\n');
         var r = parseInt(nl.read(1024));
