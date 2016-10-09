@@ -20,6 +20,7 @@
 var initArray = size => Array.apply(null, Array(size)).map(x => 0.0)
 var initArrayV = (size, val) => Array.apply(null, Array(size)).map(x => val)
 
+var fs = require('fs');
 var netlinkwrapper = require('netlinkwrapper');
 var nl = new netlinkwrapper();
 nl.connect('localhost', 1337);
@@ -144,6 +145,4 @@ function getAverageStrategy() {
 }
 
 train(100000);
-
-var fs = require('fs');
 fs.writeFileSync("output.json", JSON.stringify(getAverageStrategy()));
