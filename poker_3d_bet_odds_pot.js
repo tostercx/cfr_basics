@@ -1,6 +1,9 @@
 // same as odds vs bet, but added a "pot" which is actually closer to an oppenet's raise
-// results - if winning chance above 50% match raise - no real surprises there, but produces a nice pattern
+// results - if winning chance above 50% match raise, otherwise fold - no real surprises there, but produces a nice pattern
 
+// y - opponent's bet size 0-9
+// x - bot's bet 0-9
+// @ prob > 0.5
 /*
         ["1.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00"],
         ["0.00", "1.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00"],
